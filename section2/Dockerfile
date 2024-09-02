@@ -2,7 +2,7 @@
 FROM nginx:latest
 
 # Copy the static HTML file to the NGINX default document root
-COPY ./index.html /usr/share/nginx/html/index.html
+COPY ./section2/index.html /usr/share/nginx/html/index.html
 
 # Expose port 80
 EXPOSE 80
