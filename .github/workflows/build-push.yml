@@ -27,7 +27,7 @@ jobs:
           context: .
           file: ./section2/Dockerfile # Adjusted path to Dockerfile
           push: true
-          tags: gcr.io/super-sandbox-434412/spring:v1, gcr.io/super-sandbox-434412/spring:latest
+          tags: gcr.io/super-sandbox-434412/spring:latest
 
       - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v1
