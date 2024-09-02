@@ -27,4 +27,4 @@ jobs:
           context: .
           file: ./section2/Dockerfile # Adjusted path to Dockerfile
           push: true
-          tags: gcr.io/your-project-id/spring:v1, gcr.io/your-project-id/spring:latest
+          tags: gcr.io/super-sandbox-434412/spring:v1, gcr.io/super-sandbox-434412/spring:latest
