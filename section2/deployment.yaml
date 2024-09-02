@@ -16,10 +16,8 @@ spec:
       - name: my-container
         image: gcr.io/super-sandbox-434412/spring:latest
         ports:
-        - containerPort: 8080
-        envFrom:
-        - secretRef:
-            name: app-secret
+        - containerPort: 80
+        
         
 
 ---
@@ -33,5 +31,5 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 8080
+    targetPort: 80
   type: ClusterIP
