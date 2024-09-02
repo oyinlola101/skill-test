@@ -8,7 +8,7 @@ terraform {
   backend "gcs" {
     bucket      = "ter-bucket"
     prefix      = "terraform/state"
-    credentials = "./g-cloud-key.json
+    
 
   }
 }
