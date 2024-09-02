@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: my-container
-        image: oyinlola101/spring:v1
+        image: gcr.io/super-sandbox-434412/spring:latest
         ports:
         - containerPort: 8080
         envFrom:
