@@ -8,7 +8,7 @@ terraform {
   backend "gcs" {
     bucket      = "ter-bucket"
     prefix      = "terraform/state"
-    credentials = "C:/Users/oyin/Desktop/my-key.json"
+    credentials = "${{ secrets.GCP_CREDENTIALS }}"
 
   }
 }
