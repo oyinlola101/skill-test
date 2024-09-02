@@ -6,6 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
+       - name: Configure Google Cloud credentials
+        run: echo "${{ secrets.GCP_CREDENTIALS }}" > ./gcloud-key.json
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
       - name: checkout
         uses: actions/checkout@v2
       - name: terraform init
