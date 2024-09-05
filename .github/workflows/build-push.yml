@@ -35,9 +35,8 @@ jobs:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
       - name: 'Create Cloud Deploy delivery pipeline'
         run: |-
-          gcloud deploy apply --file pipeline.yaml --region us-east1
-
-          --description="Automated pipeline creation from GitHub Actions"
+          gcloud deploy apply --file ./pipeline.yaml --region us-east1 
+          
       - name: Deploy using Google Cloud Deploy
         run: |
           gcloud deploy releases create release-$(date +%Y%m%d-%H%M%S) \
