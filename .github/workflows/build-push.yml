@@ -37,7 +37,6 @@ jobs:
         run: |
           gcloud deploy delivery-pipelines  \
           --project=super-sandbox-434412 \
-          --region=us-east1 \
           --delivery-pipeline-file=./pipeline.yaml \
           --description="Automated pipeline creation from GitHub Actions"
       - name: Deploy using Google Cloud Deploy
