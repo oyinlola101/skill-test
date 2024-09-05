@@ -35,7 +35,7 @@ jobs:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
       - name: Create Cloud Deploy pipeline
         run: |
-          gcloud deploy delivery-pipelines create demo-btnmh5s \
+          gcloud deploy delivery-pipelines  \
           --project=super-sandbox-434412 \
           --region=us-east1 \
           --delivery-pipeline-file=./pipeline.yaml \
