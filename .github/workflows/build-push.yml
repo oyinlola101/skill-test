@@ -41,7 +41,7 @@ jobs:
         run: |
           gcloud deploy releases create release-$(date +%Y%m%d-%H%M%S) \
           --project=super-sandbox-434412 \
-          --delivery-pipeline=demo-btnmh5s \
+          --delivery-pipeline=gke-cicd-pipeline \
           --region=us-east1 \
           --images=your-app=gcr.io/super-sandbox-434412/spring:v1 \
           --description="Automated deployment from GitHub Actions"
