@@ -33,6 +33,13 @@ jobs:
         uses: google-github-actions/auth@v1
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+      - name: Create Cloud Deploy pipeline
+        run: |
+          gcloud deploy pipelines create demo-btnmh5s \
+          --project=super-sandbox-434412 \
+          --region=us-east1 \
+          --delivery-pipeline-file=pipeline.yaml \
+          --description="Automated pipeline creation from GitHub Actions"
       - name: Deploy using Google Cloud Deploy
         run: |
           gcloud deploy releases create release-$(date +%Y%m%d-%H%M%S) \
