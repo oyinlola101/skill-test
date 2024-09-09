@@ -14,7 +14,7 @@ jobs:
           credentials_json: "${{ secrets.GCP_CREDENTIALS }}"
       - name: Create a storage bucket
         run: |-
-          chmod +x check_create-bucket.sh //
+          chmod +x check_create-bucket.sh /
           ./check_create_bucket.sh
 
   build:
