@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "gcs" {
-    bucket      = "my-test-bucket"
+    bucket      = "my-test-bucket-super-sandbox-1"
     prefix      = "terraform/state"
     
 
