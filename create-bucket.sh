@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-BUCKET_NAME="gs://ter-bucket"
+BUCKET_NAME="gs://my-test-bucket"
 LOCATION="us-east1"
 
 # Check if the bucket exists
@@ -13,7 +13,7 @@ else
   if [ $? -eq 0 ]; then
     echo "Bucket $BUCKET_NAME successfully created."
   else
-    echo "Failed to create the bucket $BUCKET_NAME."
+    echo "Failed to create the bucket $BUCKET_NAME. It has already been created"
     exit 1
   fi
 fi
