@@ -16,7 +16,7 @@ jobs:
           --delivery-pipeline=gke-cicd-pipeline \
           --region=us-east1 \
           --images=your-app=gcr.io/super-sandbox-434412/spring:v1 \
-          --description="Automated deployment from GitHub Actions"
+          --description="Automated deployment from GitHub Action"
 
       
   docker:
