@@ -18,8 +18,8 @@ jobs:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
       - name: 'Create Cloud Deploy delivery pipeline'
         run: |-
-          gcloud deploy apply --file ./pipeline.yaml --region us-east1
-
+          chmod +x create-pipeline.sh /
+          ./create-pipeline.sh
       - name: Deploy using Google Cloud Deploy
         run: |
           gcloud deploy releases create release-$(date +%Y%m%d-%H%M%S) \
@@ -61,13 +61,12 @@ jobs:
 
       - name: 'Create kubernetes cluster'
         run: |-
-          gcloud container clusters create mytestcluster \
-          --zone us-east1 \
-          --num-nodes 1 \
-          --machine-type e2-medium \
-          --enable-ip-alias \
-          --network default \
-          --subnetwork default
+          chmod +x create-cluster.sh /
+          ./create_cluster.sh
+          
+           
+          
+         
 
 
           
