@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: docker
     steps:
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
       - name: Deploy using Google Cloud Deploy
         run: |
           gcloud deploy releases create release-$(date +%Y%m%d-%H%M%S) \
