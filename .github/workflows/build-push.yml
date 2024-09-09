@@ -16,9 +16,11 @@ jobs:
         uses: google-github-actions/auth@v1
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+      - name: Make the script executable
+        run: chmod +x create-pipeline.sh
+
       - name: 'Create Cloud Deploy delivery pipeline'
         run: |-
-          chmod +x create-pipeline.sh /
           ./create-pipeline.sh
       - name: Deploy using Google Cloud Deploy
         run: |
@@ -58,10 +60,12 @@ jobs:
         uses: google-github-actions/auth@v1
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+          
+      - name: Make the script executable
+        run: chmod +x create-cluster.sh
 
       - name: 'Create kubernetes cluster'
         run: |-
-          chmod +x create-cluster.sh /
           ./create_cluster.sh
           
            
