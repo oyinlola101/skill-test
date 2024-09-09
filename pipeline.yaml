@@ -15,4 +15,4 @@ metadata:
   name: 'test'
 description: 'test target'
 run:
-  location: 'projects/super-sandbox-434412/locations/us-east1/clusters/autopilot-cluster-1' #replace the last destination with the name of the cluster created and the region if it is changed from what is available here.
+  location: 'projects/super-sandbox-434412/locations/us-east1/clusters/mytestcluster' #replace the last destination with the name of the cluster created and the region if it is changed from what is available here.
