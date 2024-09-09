@@ -14,7 +14,7 @@ jobs:
           credentials_json: "${{ secrets.GCP_CREDENTIALS }}"
       - name: Create storage bucket
         run: |-
-          gcloud storage buckets create gs://ter --location us-east1
+          gcloud storage buckets create gs://ter-bucket --location us-east1
 
   build:
     runs-on: ubuntu-20.04
