@@ -57,7 +57,7 @@ jobs:
         run: |-
           gcloud container clusters create mytestcluster \
           --zone us-east1 \
-          --num-nodes 3 \
+          --num-nodes 1 \
           --machine-type e2-medium \
           --enable-ip-alias \
           --network default \
