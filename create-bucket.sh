@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Variables
-BUCKET_NAME="gs://my-test-bucket"
+BUCKET_NAME="gs://my-test-bucket-super-sandbox-1"
 LOCATION="us-east1"
 
 # Check if the bucket exists
