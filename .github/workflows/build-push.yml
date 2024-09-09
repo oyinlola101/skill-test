@@ -9,10 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: docker
     steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        
       - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v1
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+      - name: 'Create Cloud Deploy delivery pipeline'
+        run: |-
+          gcloud deploy apply --file ./pipeline.yaml --region us-east1
 
       - name: Deploy using Google Cloud Deploy
         run: |
@@ -65,8 +71,6 @@ jobs:
 
 
           
-      - name: 'Create Cloud Deploy delivery pipeline'
-        run: |-
-          gcloud deploy apply --file ./pipeline.yaml --region us-east1 
+       
           
       
