@@ -12,9 +12,11 @@ jobs:
         uses: "google-github-actions/auth@v1"
         with:
           credentials_json: "${{ secrets.GCP_CREDENTIALS }}"
+      - name: Make the script executable
+        run: chmod +x create-bucket.sh
+
       - name: Create a storage bucket
         run: |-
-          chmod +x create-bucket.sh /
           ./create_bucket.sh
 
   build:
