@@ -78,9 +78,9 @@ jobs:
           # The URL of the Google Container Registry
           gcp_registry: us-central1-docker.pkg.dev
           # The name of the Google Container Registry repository
-          gcp_repository: artifact registry
+          gcp_repository: reverse
           # The name of the Docker image
-          image_name: reverse
+          image_name: test
           # The tag of the Docker image
           image_tag: latest
           
