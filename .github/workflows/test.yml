@@ -1,0 +1,127 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: reverse-ip-app-439418
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+
+      # - name: Authenticate Docker to Artifact Registry
+      #   run: |
+      #     echo ${{ secrets.GCP_CREDENTIALS }} | docker login -u _json_key --password-stdin https://us-central1-docker.pkg.dev
+
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      # - name: Set up Docker Buildx.
+      #   uses: docker/setup-buildx-action@v1
+
+      # - name: Log in to Google Container Registry
+      #   uses: docker/login-action@v2
+      #   with:
+      #     registry: gcr.io
+      #     username: _json_key
+      #     password: ${{ secrets.GCP_CREDENTIALS }}      
+      
+    #   - name: Docker Compose Command
+    #     uses: blag/action-docker-compose@v0.0.1
+    #     with:
+    # # Command line arguments for docker-compose
+    #       cli-args: up -d
+    #       #push: true
+    #       #tags: gcr.io/reverse/reverse:latest
+      - name: Build & push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./section2/Dockerfile # Adjusted path to Dockerfile
+          push: true
+          tags: gcr.io/reverse-ip-app-439418/spring:latest
+      - name: Deploy to Google Container Registry
+  # You may pin to the exact commit or the version.
+  # uses: castroneto/deploy-to-google-artifactory@97a97b97054b550c27a2872aa11ccb4a19fdea45
+        uses: castroneto/deploy-to-google-artifactory@latest
+        with:
+          # The JSON contents of the Google Cloud Service Account key file
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}   
+          # The name of the Google Cloud project
+          gcp_project: reverse-ip-app
+          # The URL of the Google Container Registry
+          gcp_registry: us-central1-docker.pkg.dev
+          # The name of the Google Container Registry repository
+          gcp_repository: reverse
+          # The name of the Docker image
+          image_name: mytest
+          # The tag of the Docker image
+          image_tag: latest
+          
+      
+      # - name: Build and push Docker images
+      #   run: |
+      #     docker-compose up -d
+      #     docker tag reverse/reverse:latest gcr.io/reverse/reverse:latest
+      #     docker tag mysql:5.7 gcr.io/reverse/mysql:5.7
+      #     docker push gcr.io/reverse/reverse:latest
+      #     docker push gcr.io/reverse/mysql:5.7
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: 'latest'
+
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+          project_id: reverse-ip-app-439418
+
+      # - name: Deploy to GKE
+      #   run: |
+      #     kubectl config set-cluster gke_cluster --server=https://34.56.181.209
+      #     kubectl config set-credentials gke_user --token=${{ secrets.GCP_CREDENTIALS }}
+      #     kubectl config set-context gke_context --cluster=gke_cluster --user=gke_user
+      #     kubectl config use-context gke_context
+      #     kubectl apply -f deployment.yaml
+      - name: Deploy GKE
+            # You may pin to the exact commit or the version.
+            # uses: google-github-actions/deploy-gke@3a3db4621610b206c2b3c63fa8899bcbd09a65e2
+        uses: google-github-actions/deploy-gke@v0.0.1
+        with:
+          # Image to be deployed
+          image: us-central1-docker.pkg.dev/reverse-ip-app-439418/reverse
+          # Application name of the Kubernetes deployment
+          app_name: reverse
+          # Region/zone of GKE cluster to deploy to.
+          region: us-central1
+          # Name of GKE cluster to deploy to.
+          cluster_name: reverse
+          # Project of GKE cluster to deploy to.
+          project_id: reverse-ip-app-439418
+          # Namespace of GKE cluster to deploy to. If not provided, it will not be passed to the binary. 
+          # namespace: # optional
+          # # The port provided will be used to expose the deployed workload object (i.e., port and targetPort will be set to the value provided in this flag).  If not provided, it will not be passed to the binary.
+          # expose: # optional
+          
