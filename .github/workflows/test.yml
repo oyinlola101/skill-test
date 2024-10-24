@@ -59,6 +59,13 @@ jobs:
           file: ./section2/Dockerfile # Adjusted path to Dockerfile
           push: true
           tags: gcr.io/reverse-ip-app-439418/reverse:latest
+
+      - name: Log in to Google Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: gcr.io
+          username: _json_key
+          password: ${{ secrets.GCP_CREDENTIALS }}
       - name: Deploy to Google Container Registry
   # You may pin to the exact commit or the version.
   # uses: castroneto/deploy-to-google-artifactory@97a97b97054b550c27a2872aa11ccb4a19fdea45
