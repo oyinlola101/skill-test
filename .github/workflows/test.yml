@@ -13,11 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v1
-        with:
-          project_id: reverse-ip-app-439418
-          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+      # - name: Set up Google Cloud SDK
+      #   uses: google-github-actions/setup-gcloud@v1
+      #   with:
+      #     project_id: reverse-ip-app-439418
+      #     service_account_key: ${{ secrets.GCP_CREDENTIALS }}
 
       # - name: Authenticate Docker to Artifact Registry
       #   run: |
