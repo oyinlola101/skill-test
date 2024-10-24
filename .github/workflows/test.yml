@@ -73,7 +73,7 @@ jobs:
           # The name of the Google Container Registry repository
           gcp_repository: reverse
           # The name of the Docker image
-          image_name: mytest
+          image_name: reverse
           # The tag of the Docker image
           image_tag: latest
           
