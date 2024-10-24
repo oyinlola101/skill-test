@@ -51,7 +51,7 @@ jobs:
           context: .
           file: ./section2/Dockerfile # Adjusted path to Dockerfile
           push: true
-          tags: gcr.io/reverse-ip-app-439418/spring:latest
+          tags: gcr.io/reverse-ip-app-439418/reverse:latest
       - name: Deploy to Google Container Registry
   # You may pin to the exact commit or the version.
   # uses: castroneto/deploy-to-google-artifactory@97a97b97054b550c27a2872aa11ccb4a19fdea45
