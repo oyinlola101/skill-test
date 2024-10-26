@@ -119,13 +119,14 @@ jobs:
       #     kubectl config set-context gke_context --cluster=gke_cluster --user=gke_user
       #     kubectl config use-context gke_context
       #     kubectl apply -f deployment.yaml
+      
       - name: Deploy GKE
             # You may pin to the exact commit or the version.
             # uses: google-github-actions/deploy-gke@3a3db4621610b206c2b3c63fa8899bcbd09a65e2
         uses: google-github-actions/deploy-gke@v0.0.1
         with:
           # Image to be deployed
-          image: gcr.io/reverse-ip-app-439418/reverse/test:latest
+          image: gcr.io/reverse-ip-app-439418/reverse:latest
           # Application name of the Kubernetes deployment
           app_name: reverse
           # Region/zone of GKE cluster to deploy to.
